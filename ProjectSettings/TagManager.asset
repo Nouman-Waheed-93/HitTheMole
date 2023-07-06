@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Land
+    uniqueID: 2645635567
+    locked: 0
+  - name: Hole
+    uniqueID: 1016945267
+    locked: 0
+  - name: Mole
+    uniqueID: 4248401963
+    locked: 0
+  - name: SandPile
+    uniqueID: 3423429163
+    locked: 0
+  - name: UI
+    uniqueID: 3499925943
+    locked: 0
