@@ -947,10 +947,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDetails:
-    maxMoles: 1
+    maxMoles: 3
     moleOutInterval:
-      minLimit: 0.3
-      maxLimit: 1
+      minLimit: 1
+      maxLimit: 3
     shakeInterval:
       minLimit: 0.3
       maxLimit: 0.6
@@ -958,14 +958,14 @@ MonoBehaviour:
       minLimit: 0.1
       maxLimit: 0.3
     stayTime:
-      minLimit: 3
-      maxLimit: 6
+      minLimit: 0.3
+      maxLimit: 1
     goDownTime:
       minLimit: 0.1
       maxLimit: 0.3
-    pirateMoleProbability: 0
-    simplePowerMoleProbability: 0
-    complexPowerMoleProbability: 1
+    pirateMoleProbability: 0.1
+    simplePowerMoleProbability: 0.1
+    complexPowerMoleProbability: 0.1
 --- !u!1001 &1177268549
 PrefabInstance:
   m_ObjectHideFlags: 0

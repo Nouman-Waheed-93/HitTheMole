@@ -6,8 +6,8 @@ public abstract class State
 {
     protected Hole hole;
 
-    private float minStayTime;
-    private float maxStayTime;
+    protected float minStayTime;
+    protected float maxStayTime;
 
     protected float stayTime;
     public float StayTime { get => stayTime; }

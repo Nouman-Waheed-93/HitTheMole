@@ -51,6 +51,16 @@ public class Hole : MonoBehaviour
         currentState.OnUpdate();
     }
 
+    public bool CanSendAMoleOut()
+    {
+        return levelManager.CanSendAMoleOut();
+    }
+
+    public void BookMoleTurn()
+    {
+        levelManager.MolesOut++;
+    }
+
     public void SendAMoleOut(float time)
     {
         DecideMoleType();
@@ -62,6 +72,7 @@ public class Hole : MonoBehaviour
     {
         mole.HidePowerViews();
         mole.transform.DOLocalMoveY(-1, time);
+        levelManager.MolesOut--;
     }
 
     public void StartShaking()

@@ -18,6 +18,18 @@ public class Free : State
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
+        stayTime -= Time.deltaTime;
+        if (stayTime <= 0)
+        {
+            if (hole.CanSendAMoleOut())
+            {
+                hole.ChangeState(nextState);
+                hole.BookMoleTurn();
+            }
+            else
+            {
+                stayTime = Random.Range(minStayTime, maxStayTime);
+            }
+        }
     }
 }
