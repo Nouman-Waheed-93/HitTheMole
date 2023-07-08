@@ -10,7 +10,8 @@ public class BombFlash : MonoBehaviour
     private Gradient explosionAnimation;
     private Image image;
 
-    private void Awake()
+
+    private void Start()
     {
         image = GetComponent<Image>();
     }

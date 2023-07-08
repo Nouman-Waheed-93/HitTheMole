@@ -5,11 +5,16 @@ using DG.Tweening;
 
 public class Hole : MonoBehaviour
 {
+    public bool isAppleOn { get { return appleGO.active; } }
+    public bool hasPirateMole { get { return mole.IsPirateMole; } }
     [SerializeField]
     LevelManager levelManager;
 
     [SerializeField]
     private Mole mole;
+
+    [SerializeField]
+    private GameObject appleGO;
 
     [SerializeField]
     private float shakingStrength;
@@ -21,7 +26,7 @@ public class Hole : MonoBehaviour
     private Shaking stateShaking;
     private MoleGoingOut stateGoingOut;
     private MoleOut stateMoleOut;
-    private MoleOut stateMoleCrying;
+    private State stateMoleCrying;
     private MoleGoingIn stateMoleIn;
 
     private Sequence shakeSequence;
@@ -33,7 +38,7 @@ public class Hole : MonoBehaviour
         stateShaking = new Shaking(this, levelManager.levelDetails.shakeInterval.minLimit, levelManager.levelDetails.shakeInterval.maxLimit);
         stateGoingOut = new MoleGoingOut(this, levelManager.levelDetails.jumpUpTime.minLimit, levelManager.levelDetails.jumpUpTime.maxLimit);
         stateMoleOut = new MoleOut(this, levelManager.levelDetails.stayTime.minLimit, levelManager.levelDetails.stayTime.maxLimit);
-        stateMoleCrying = new MoleOut(this, 0.5f, 0.5f);
+        stateMoleCrying = new State(this, 0.5f, 0.5f);
         stateMoleIn = new MoleGoingIn(this, levelManager.levelDetails.goDownTime.minLimit, levelManager.levelDetails.goDownTime.maxLimit);
 
         stateFree.nextState = stateShaking;
@@ -51,9 +56,22 @@ public class Hole : MonoBehaviour
         currentState.OnUpdate();
     }
 
+    private void OnMouseDown()
+    {
+        //if (levelManager.isAppleSelected)
+        //{
+        //    appleGO.SetActive(true);
+        //}
+    }
+
     public bool CanSendAMoleOut()
     {
         return levelManager.CanSendAMoleOut();
+    }
+
+    public bool CanGoIn()
+    {
+        return !mole.IsMesmerized;
     }
 
     public void BookMoleTurn()
@@ -66,6 +84,16 @@ public class Hole : MonoBehaviour
         DecideMoleType();
         mole.transform.position = transform.position;
         mole.transform.DOLocalMoveY(2, time);
+    }
+
+    public int GetMolePower()
+    {
+        return mole.Power;
+    }
+
+    public void MesmerizeTheMole()
+    {
+        mole.ToMesmerizedState();
     }
 
     public void SendMoleIn(float time)
@@ -91,6 +119,7 @@ public class Hole : MonoBehaviour
     public void ChangeStateToCrying()
     {
         ChangeState(stateMoleCrying);
+        levelManager.MoleHit();
     }
 
     public void ChangeState(State state)
@@ -103,6 +132,11 @@ public class Hole : MonoBehaviour
     public float CalculateRandomActionTime()
     {
         return Random.Range(currentState.StayTime * 0.1f, currentState.StayTime);
+    }
+
+    public void PirateMoleHit()
+    {
+        levelManager.LoseLife();
     }
 
     private void DecideMoleType()

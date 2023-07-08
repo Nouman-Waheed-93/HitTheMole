@@ -2,6 +2,8 @@
 public class LevelDetails
 {
     public int maxMoles; //How many moles can be out at a time?
+    public int lives;
+    public float startTime;
     public Extremum moleOutInterval;
     public Extremum shakeInterval;
     public Extremum jumpUpTime;

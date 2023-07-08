@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Mole : MonoBehaviour
 {
     public Hole hole;
-    private enum State { normal, crying, laughing, hit, pirate }
+    private enum State { normal, crying, laughing, mesmerized, pirate }
 
     [SerializeField]
     private GameObject normalSprite;
@@ -15,7 +15,7 @@ public class Mole : MonoBehaviour
     [SerializeField]
     private GameObject laughingSprite;
     [SerializeField]
-    private GameObject hitSprite;
+    private GameObject mesmerizedSprite;
     [SerializeField]
     private GameObject pirateSprite;
 
@@ -37,6 +37,23 @@ public class Mole : MonoBehaviour
     private float randomActionTimer;
 
     private int power;
+    public int Power { get => power; }
+
+    public bool IsMesmerized
+    {
+        get
+        {
+            return state == State.mesmerized;
+        }
+    }
+
+    public bool IsPirateMole
+    {
+        get
+        {
+            return state == State.pirate;
+        }
+    }
 
     private bool IsOut
     {
@@ -46,9 +63,6 @@ public class Mole : MonoBehaviour
         }
     }
 
-    
-    public UnityEvent onPirateHit;
-    
     private void Update()
     {
         randomActionTimer -= Time.deltaTime;
@@ -70,7 +84,7 @@ public class Mole : MonoBehaviour
         if (!IsOut)
             return;
 
-        if (state == State.normal || state == State.laughing)
+        if (state == State.normal || state == State.laughing || state == State.mesmerized)
         {
             power--;
             if (power <= 0)
@@ -82,7 +96,7 @@ public class Mole : MonoBehaviour
         {
             if (power > 0)
             {
-                onPirateHit?.Invoke();
+                hole.PirateMoleHit();
                 hole.ChangeStateToCrying();
                 power--;
             }
@@ -143,9 +157,9 @@ public class Mole : MonoBehaviour
         EnableTheCorrectSprite();
     }
 
-    private void ToHitState()
+    public void ToMesmerizedState()
     {
-        state = State.hit;
+        state = State.mesmerized;
         EnableTheCorrectSprite();
     }
 
@@ -161,15 +175,15 @@ public class Mole : MonoBehaviour
         normalSprite.SetActive(false);
         cryingSprite.SetActive(false);
         laughingSprite.SetActive(false);
-        hitSprite.SetActive(false);
+        mesmerizedSprite.SetActive(false);
         pirateSprite.SetActive(false);
         switch (state)
         {
             case State.crying:
                 cryingSprite.SetActive(true);
                 break;
-            case State.hit:
-                hitSprite.SetActive(true);
+            case State.mesmerized:
+                mesmerizedSprite.SetActive(true);
                 break;
             case State.laughing:
                 laughingSprite.SetActive(true);
