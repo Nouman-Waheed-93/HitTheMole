@@ -58,10 +58,10 @@ public class Hole : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //if (levelManager.isAppleSelected)
-        //{
-        //    appleGO.SetActive(true);
-        //}
+        if (levelManager.isAppleSelected)
+        {
+            appleGO.SetActive(true);
+        }
     }
 
     public bool CanSendAMoleOut()
@@ -81,6 +81,7 @@ public class Hole : MonoBehaviour
 
     public void SendAMoleOut(float time)
     {
+        Debug.Log("Sending a mole out");
         DecideMoleType();
         mole.transform.position = transform.position;
         mole.transform.DOLocalMoveY(2, time);

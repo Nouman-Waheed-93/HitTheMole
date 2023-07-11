@@ -33,7 +33,6 @@ public class State
         {
             hole.ChangeState(nextState);
         }
-        Debug.Log("My state is " + this.GetType());
     }
 
     public virtual void OnExit() { }

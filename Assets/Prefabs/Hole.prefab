@@ -677,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5256910363502462440}
   - component: {fileID: 5256910363502462443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HarmedMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 5256910363722051740}
   - component: {fileID: 5256910363722051743}
   - component: {fileID: 1213276184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 5256910364099195770}
   - component: {fileID: 5256910364099195768}
   - component: {fileID: 5256910364099195773}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 5256910364653048416}
   - component: {fileID: 5256910364653048419}
   - component: {fileID: 1593455889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LaughingMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 5256910365324429446}
   - component: {fileID: 5256910365324429497}
   - component: {fileID: 422966817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CryingMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1537,7 +1537,7 @@ GameObject:
   - component: {fileID: 8752544781964337341}
   - component: {fileID: 8752544781964337342}
   - component: {fileID: 8645325420875052284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PirateMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}

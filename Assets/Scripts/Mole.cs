@@ -59,7 +59,7 @@ public class Mole : MonoBehaviour
     {
         get
         {
-            return transform.localPosition.y > outThreshold;
+            return transform.localPosition.y >= outThreshold;
         }
     }
 
@@ -79,10 +79,16 @@ public class Mole : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    public void OnHit()
     {
+        Debug.Log("Got hit");
+        Debug.Log("my local y " + transform.localPosition.y + ", threshold " + outThreshold);
         if (!IsOut)
             return;
+
+        Debug.Log("Is out too");
+
+        Debug.Log("Remaining power " + power);
 
         if (state == State.normal || state == State.laughing || state == State.mesmerized)
         {
