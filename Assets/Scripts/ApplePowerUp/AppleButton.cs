@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Apple : MonoBehaviour
+public class AppleButton : MonoBehaviour
 {
     [SerializeField]
     private GameObject selectionOutline;
