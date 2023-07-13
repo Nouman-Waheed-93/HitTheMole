@@ -5,6 +5,8 @@ using UnityEngine;
 public class AppleSpawner : MonoBehaviour
 {
     [SerializeField]
+    private LevelManager levelManager;
+    [SerializeField]
     private Apple[] apples;
     [SerializeField]
     private Extremum spawnExtremes;
@@ -19,7 +21,7 @@ public class AppleSpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer -= Time.deltaTime;
-        if(spawnTimer < 0)
+        if(spawnTimer < 0 && !levelManager.IsGameOver)
         {
             StartCoroutine(SpawnApple());
             SetSpawnTimer();

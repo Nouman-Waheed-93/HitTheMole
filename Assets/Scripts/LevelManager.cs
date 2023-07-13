@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
 {
     public LevelDetails levelDetails;
+    public string levelSavePath;
+    public TextAsset levelToLoad;
 
     private int molesOut;
     public int MolesOut
@@ -40,11 +42,17 @@ public class LevelManager : MonoBehaviour
     private int appleCount;
     public int AppleCount { get => appleCount; }
 
+    private bool isGameOver = true;
+    public bool IsGameOver { get => isGameOver; }
+
     public bool isAppleSelected { get; set; }
 
     public UnityEvent onLifeLost;
     public UnityEvent onAppleUsed;
     public UnityEvent onAppleCollected;
+    public UnityEvent onGameOver;
+
+    private bool gameOverEventRaised;
 
     private void Awake()
     {
@@ -54,7 +62,20 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGameOver)
+            return;
+
         remainingTime -= Time.deltaTime;
+        if(remainingTime <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void StartGame()
+    {
+        isGameOver = false;
+        remainingTime = levelDetails.startTime;
     }
 
     public void CollectApple()
@@ -71,11 +92,14 @@ public class LevelManager : MonoBehaviour
 
     public bool CanSendAMoleOut()
     {
-        return molesOut < levelDetails.maxMoles;
+        return molesOut < levelDetails.maxMoles && !isGameOver;
     }
 
     public void MoleHit()
     {
+        if (isGameOver)
+            return;
+
         score++;
     }
 
@@ -86,6 +110,17 @@ public class LevelManager : MonoBehaviour
         if(lives <= 0)
         {
             //Mar gya
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        if (!gameOverEventRaised)
+        {
+            gameOverEventRaised = true;
+            isGameOver = true;
+            onGameOver?.Invoke();
         }
     }
 }
