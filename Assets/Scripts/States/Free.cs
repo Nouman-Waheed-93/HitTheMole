@@ -19,6 +19,11 @@ public class Free : State
     public override void OnUpdate()
     {
         stayTime -= Time.deltaTime;
+        if (hole.isAppleOn)
+        {
+            stayTime = 0;
+        }
+
         if (stayTime <= 0)
         {
             if (hole.CanSendAMoleOut())

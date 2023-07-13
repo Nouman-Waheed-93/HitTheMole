@@ -9,6 +9,7 @@ public class LevelDetails
     public Extremum jumpUpTime;
     public Extremum stayTime;
     public Extremum goDownTime;
+    public Extremum appleFallTime;
     public float pirateMoleProbability;
     public float simplePowerMoleProbability;
     public float complexPowerMoleProbability;

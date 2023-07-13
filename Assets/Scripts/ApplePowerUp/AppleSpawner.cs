@@ -8,8 +8,6 @@ public class AppleSpawner : MonoBehaviour
     private LevelManager levelManager;
     [SerializeField]
     private Apple[] apples;
-    [SerializeField]
-    private Extremum spawnExtremes;
 
     private float spawnTimer;
 
@@ -30,6 +28,7 @@ public class AppleSpawner : MonoBehaviour
 
     private void SetSpawnTimer()
     {
+        Extremum spawnExtremes = levelManager.levelDetails.appleFallTime;
         spawnTimer = Random.Range(spawnExtremes.minLimit, spawnExtremes.maxLimit);
     }
 

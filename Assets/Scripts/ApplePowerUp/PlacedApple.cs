@@ -13,7 +13,7 @@ public class PlacedApple : MonoBehaviour
 
     private void OnEnable()
     {
-        remainingTime = 3;
+        remainingTime = 10;
     }
 
     private void Update()

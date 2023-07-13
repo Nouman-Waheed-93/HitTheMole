@@ -11,10 +11,11 @@ public class LivesView : MonoBehaviour
 
     private void Start()
     {
-        levelManager.onLifeLost.AddListener(OnLifeLost);
+        levelManager.onLifeLost.AddListener(UpdateLifeView);
+        levelManager.onGameStart.AddListener(UpdateLifeView);
     }
 
-    private void OnLifeLost()
+    private void UpdateLifeView()
     {
         for(int i = lives.Length - 1; i >= levelManager.Lives; i--)
         {

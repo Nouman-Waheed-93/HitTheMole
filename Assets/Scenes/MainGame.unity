@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c981d3355fe9fe64f8d961c2650da4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 1120240330}
 --- !u!1 &629663215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,9 +2236,6 @@ MonoBehaviour:
   - {fileID: 1982746589}
   - {fileID: 1953195035}
   - {fileID: 1079357710}
-  spawnExtremes:
-    minLimit: 3
-    maxLimit: 6
 --- !u!1 &1053168588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,12 +2555,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDetails:
-    maxMoles: 3
+    maxMoles: 2
     lives: 3
     startTime: 60
     moleOutInterval:
-      minLimit: 1
-      maxLimit: 3
+      minLimit: 3
+      maxLimit: 6
     shakeInterval:
       minLimit: 0.3
       maxLimit: 0.6
@@ -2570,16 +2568,19 @@ MonoBehaviour:
       minLimit: 0.1
       maxLimit: 0.3
     stayTime:
-      minLimit: 0.5
-      maxLimit: 1
+      minLimit: 2
+      maxLimit: 4
     goDownTime:
       minLimit: 0.1
       maxLimit: 0.3
-    pirateMoleProbability: 0.1
-    simplePowerMoleProbability: 0.3
-    complexPowerMoleProbability: 0.2
-  levelSavePath: Assets/LevelData/Level4.json
-  levelToLoad: {fileID: 4900000, guid: f71cb51a65b84cd42aa4e195d31b891b, type: 3}
+    appleFallTime:
+      minLimit: 10
+      maxLimit: 15
+    pirateMoleProbability: 0
+    simplePowerMoleProbability: 0
+    complexPowerMoleProbability: 0
+  levelSavePath: Assets/LevelData/Level1.json
+  levelToLoad: {fileID: 4900000, guid: b22eab072d609154887b9ebc89ac9ce0, type: 3}
   onLifeLost:
     m_PersistentCalls:
       m_Calls:
@@ -2616,6 +2617,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onGameStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1121177186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121177187}
+  - component: {fileID: 1121177188}
   m_Layer: 5
   m_Name: LevelButtons
   m_TagString: Untagged
@@ -2654,6 +2659,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1121177188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121177186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d15058955c73f4ab298cc004055dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 1120240330}
 --- !u!1 &1157003354
 GameObject:
   m_ObjectHideFlags: 0

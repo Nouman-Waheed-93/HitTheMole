@@ -10,7 +10,6 @@ public class ScoreView : MonoBehaviour
     [SerializeField]
     private LevelManager levelManager;
 
-    // Update is called once per frame
     void Update()
     {
         text.text = levelManager.Score.ToString();

@@ -51,14 +51,7 @@ public class LevelManager : MonoBehaviour
     public UnityEvent onAppleUsed;
     public UnityEvent onAppleCollected;
     public UnityEvent onGameOver;
-
-    private bool gameOverEventRaised;
-
-    private void Awake()
-    {
-        lives = levelDetails.lives;
-        remainingTime = levelDetails.startTime;
-    }
+    public UnityEvent onGameStart;
 
     private void Update()
     {
@@ -75,7 +68,10 @@ public class LevelManager : MonoBehaviour
     public void StartGame()
     {
         isGameOver = false;
+        lives = levelDetails.lives;
+        score = 0;
         remainingTime = levelDetails.startTime;
+        onGameStart?.Invoke();
     }
 
     public void CollectApple()
@@ -116,9 +112,8 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
-        if (!gameOverEventRaised)
+        if (!isGameOver)
         {
-            gameOverEventRaised = true;
             isGameOver = true;
             onGameOver?.Invoke();
         }
