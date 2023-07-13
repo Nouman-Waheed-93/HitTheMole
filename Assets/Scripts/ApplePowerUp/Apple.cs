@@ -6,6 +6,8 @@ using DG.Tweening;
 public class Apple : MonoBehaviour
 {
     [SerializeField]
+    private LevelManager levelManager;
+    [SerializeField]
     private Transform startPosition;
     [SerializeField]
     private Transform fallPosition;
@@ -33,6 +35,18 @@ public class Apple : MonoBehaviour
         if (timeElapsed > expiryTime)
             Expire();
 
+    }
+
+    private void OnMouseDown()
+    {
+        Collect();
+    }
+
+
+    private void Collect()
+    {
+        levelManager.CollectApple();
+        gameObject.SetActive(false);
     }
 
     private void Expire()

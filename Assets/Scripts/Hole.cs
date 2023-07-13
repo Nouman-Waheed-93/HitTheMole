@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Hole : MonoBehaviour
+public class Hole : MonoBehaviour, IClickable
 {
     public bool isAppleOn { get { return appleGO.active; } }
     public bool hasPirateMole { get { return mole.IsPirateMole; } }
@@ -56,11 +56,12 @@ public class Hole : MonoBehaviour
         currentState.OnUpdate();
     }
 
-    private void OnMouseDown()
+    public void Clicked()
     {
         if (levelManager.isAppleSelected)
         {
             appleGO.SetActive(true);
+            levelManager.UsedApple();
         }
     }
 

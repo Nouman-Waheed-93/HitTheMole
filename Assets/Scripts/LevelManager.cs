@@ -37,9 +37,14 @@ public class LevelManager : MonoBehaviour
     private int lives;
     public int Lives { get => lives; }
 
+    private int appleCount;
+    public int AppleCount { get => appleCount; }
+
     public bool isAppleSelected { get; set; }
 
     public UnityEvent onLifeLost;
+    public UnityEvent onAppleUsed;
+    public UnityEvent onAppleCollected;
 
     private void Awake()
     {
@@ -50,6 +55,18 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         remainingTime -= Time.deltaTime;
+    }
+
+    public void CollectApple()
+    {
+        appleCount++;
+        onAppleCollected?.Invoke();
+    }
+
+    public void UsedApple()
+    {
+        appleCount--;
+        onAppleUsed?.Invoke();
     }
 
     public bool CanSendAMoleOut()

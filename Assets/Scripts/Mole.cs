@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Mole : MonoBehaviour
+public class Mole : MonoBehaviour, IClickable
 {
     public Hole hole;
     private enum State { normal, crying, laughing, mesmerized, pirate }
@@ -79,7 +79,7 @@ public class Mole : MonoBehaviour
         }
     }
 
-    public void OnHit()
+    public void Clicked()
     {
         Debug.Log("Got hit");
         Debug.Log("my local y " + transform.localPosition.y + ", threshold " + outThreshold);

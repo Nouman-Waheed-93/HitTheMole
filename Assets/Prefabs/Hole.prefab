@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6615623813338188320}
   - component: {fileID: 6103008882761505544}
   - component: {fileID: 2121676704124929806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,6 +1260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3989264652060419661}
   - component: {fileID: 474128384239252164}
+  - component: {fileID: 1900633325257187853}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -1334,6 +1335,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1900633325257187853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885731436537518949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dc46d3f16a9a54cac8c3ee7c46e8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 474128384239252164}
 --- !u!1 &6683195421987626178
 GameObject:
   m_ObjectHideFlags: 0

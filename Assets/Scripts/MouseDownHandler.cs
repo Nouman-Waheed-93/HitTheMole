@@ -16,7 +16,7 @@ public class MouseDownHandler : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    hit.collider.GetComponent<Mole>().OnHit();
+                    hit.collider.GetComponent<IClickable>().Clicked();
                 }
             }
         }
