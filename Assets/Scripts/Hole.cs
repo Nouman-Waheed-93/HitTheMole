@@ -5,16 +5,27 @@ using DG.Tweening;
 
 public class Hole : MonoBehaviour, IClickable
 {
-    public bool isAppleOn { get { return appleGO.active; } }
     public bool hasPirateMole { get { return mole.IsPirateMole; } }
-    [SerializeField]
-    LevelManager levelManager;
+
+    public bool HasTheFavoriteFruit 
+    { 
+        get 
+        { 
+            bool hasAFruit = placedFruit.IsPlaced; 
+            bool isPreferredFruit = placedFruit.fruitType == preferredFruit; 
+            return hasAFruit && isPreferredFruit; 
+        } 
+    }
+
+    public FruitType preferredFruit;
+
+    private LevelManager levelManager;
 
     [SerializeField]
     private Mole mole;
 
     [SerializeField]
-    private GameObject appleGO;
+    private PlacedFruit placedFruit;
 
     [SerializeField]
     private float shakingStrength;
@@ -32,8 +43,9 @@ public class Hole : MonoBehaviour, IClickable
     private Sequence shakeSequence;
     private Vector3 originPosition;
 
-    private void Awake()
+    public void Init(LevelManager levelManager)
     {
+        this.levelManager = levelManager;
         stateFree = new Free(this, levelManager.levelDetails.moleOutInterval.minLimit, levelManager.levelDetails.moleOutInterval.maxLimit);
         stateShaking = new Shaking(this, levelManager.levelDetails.shakeInterval.minLimit, levelManager.levelDetails.shakeInterval.maxLimit);
         stateGoingOut = new MoleGoingOut(this, levelManager.levelDetails.jumpUpTime.minLimit, levelManager.levelDetails.jumpUpTime.maxLimit);
@@ -49,6 +61,8 @@ public class Hole : MonoBehaviour, IClickable
         stateMoleIn.nextState = stateFree;
         currentState = stateFree;
         originPosition = transform.position;
+
+        preferredFruit = Random.Range(0, 2) == 0 ? FruitType.Apple : FruitType.Walnut;
     }
 
     private void Update()
@@ -58,10 +72,13 @@ public class Hole : MonoBehaviour, IClickable
 
     public void Clicked()
     {
-        if (levelManager.isAppleSelected)
+        if(levelManager.treeManager.selectedTree != null)
         {
-            appleGO.SetActive(true);
-            levelManager.UsedApple();
+            if (levelManager.treeManager.selectedTree.RemoveARipeFruit())
+            {
+                placedFruit.Place(levelManager.treeManager.selectedTree.fruitType);
+                levelManager.treeManager.Unselect();
+            }
         }
     }
 

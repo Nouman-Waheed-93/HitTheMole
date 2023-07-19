@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Mole
   - Hole
-  - 
+  - Tree
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Land
     uniqueID: 2645635567
+    locked: 0
+  - name: Tree
+    uniqueID: 2050290427
     locked: 0
   - name: Hole
     uniqueID: 1016945267

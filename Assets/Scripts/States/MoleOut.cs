@@ -10,8 +10,6 @@ public class MoleOut : State
     {
         base.OnEnter();
         stayTime *= hole.GetMolePower();
-        if(hole.isAppleOn && !hole.hasPirateMole)
-            hole.MesmerizeTheMole();
     }
 
     public override void OnUpdate()

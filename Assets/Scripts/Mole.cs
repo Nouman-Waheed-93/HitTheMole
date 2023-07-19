@@ -81,8 +81,9 @@ public class Mole : MonoBehaviour, IClickable
 
     public void Clicked()
     {
-        Debug.Log("Got hit");
-        Debug.Log("my local y " + transform.localPosition.y + ", threshold " + outThreshold);
+        if (state == State.pirate)
+            return;
+
         if (!IsOut)
             return;
 

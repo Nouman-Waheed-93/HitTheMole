@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour
     public LevelDetails levelDetails;
     public string levelSavePath;
     public TextAsset levelToLoad;
+    public TreeSelectionManager treeManager;
+    [SerializeField]
+    private HoleSpawner holeSpawner;
 
     private int molesOut;
     public int MolesOut
@@ -39,17 +42,10 @@ public class LevelManager : MonoBehaviour
     private int lives;
     public int Lives { get => lives; }
 
-    private int appleCount;
-    public int AppleCount { get => appleCount; }
-
     private bool isGameOver = true;
     public bool IsGameOver { get => isGameOver; }
 
-    public bool isAppleSelected { get; set; }
-
     public UnityEvent onLifeLost;
-    public UnityEvent onAppleUsed;
-    public UnityEvent onAppleCollected;
     public UnityEvent onGameOver;
     public UnityEvent onGameStart;
 
@@ -69,21 +65,11 @@ public class LevelManager : MonoBehaviour
     {
         isGameOver = false;
         lives = levelDetails.lives;
+        treeManager.OnGameStart();
         score = 0;
+        holeSpawner.SpawnHoles(levelDetails.holeCount);
         remainingTime = levelDetails.startTime;
         onGameStart?.Invoke();
-    }
-
-    public void CollectApple()
-    {
-        appleCount++;
-        onAppleCollected?.Invoke();
-    }
-
-    public void UsedApple()
-    {
-        appleCount--;
-        onAppleUsed?.Invoke();
     }
 
     public bool CanSendAMoleOut()
@@ -114,6 +100,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!isGameOver)
         {
+            treeManager.OnGameEnd();
             isGameOver = true;
             onGameOver?.Invoke();
         }
